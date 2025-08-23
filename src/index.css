@@ -5,8 +5,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Custom styles */
+* {
+  font-family: 'Montserrat', 'Noto Sans', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.clip-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  margin: 0;
+  padding: 0;
+}
+
 html {
   scroll-behavior: smooth;
+}
+@media (width<770px) {
+  .ourVisionTitle {
+    order: -1;
+  }
+  
+}
+/* Custom bottom shadow */
+.bigShadow {
+  box-shadow: 0px 20px 20px rgba(6, 6, 6, 0.554); /* bottom shadow */
 }
 
 .animate-typing {
@@ -18,13 +41,25 @@ html {
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
 }
 
 @keyframes blink {
-  0%, 100% { border-color: transparent }
-  50% { border-color: black }
+
+  0%,
+  100% {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: black
+  }
 }
 
 .progress-bar {
@@ -45,13 +80,11 @@ html {
 }
 
 .portfolio-overlay {
-  @apply absolute inset-0 bg-primary bg-opacity-80 flex items-center justify-center opacity-0 
-          transition-opacity duration-300 ease-in-out group-hover:opacity-100;
+  @apply absolute inset-0 bg-primary bg-opacity-80 flex items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100;
 }
 
 .social-icon {
-  @apply w-8 h-8 rounded-full bg-black text-white flex items-center justify-center mx-1 
-          transition-transform duration-300 hover:scale-110;
+  @apply w-8 h-8 rounded-full bg-black text-white flex items-center justify-center mx-1 transition-transform duration-300 hover:scale-110;
 }
 
 .team-card {
@@ -59,8 +92,7 @@ html {
 }
 
 .team-overlay {
-  @apply absolute inset-0 bg-primary bg-opacity-80 flex items-center justify-center opacity-0 
-         transition-opacity duration-300 ease-in-out group-hover:opacity-100;
+  @apply absolute inset-0 bg-primary bg-opacity-80 flex items-center justify-center opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100;
 }
 
 .contact-icon {
@@ -68,11 +100,22 @@ html {
 }
 
 @keyframes scroll-up {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes scroll-down {
-  0% { transform: translateY(-50%); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
+

@@ -1,44 +1,38 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import HeroImage from '../../assets/IMG-20250412-WA0028 1.png';
-
+import { motion } from "framer-motion";
+import HeroImage from "../../assets/IMG-20250412-WA0028 1.png";
 
 export const HeroSection = () => (
-  <section className="relative pb-20  overflow-hidden h-screen flex items-center">
+  <section className="relative h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+    {/* Background Image */}
     <div className="absolute inset-0 z-0">
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${HeroImage})` }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-transparent opacity-80"></div>
+      {/* Optional Layer */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-[#8BAEFF] via-[#0007D3] to-[#2533DE] opacity-40"></div> */}
     </div>
 
-    {/* <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-white rounded-full filter blur-[300px] opacity-50 translate-x-1/4 translate-y-1/4 z-10"></div> */}
-    
-    <div className="container mx-auto px-6 relative z-20">
+    {/* Content */}
+    <div className="relative z-20 max-w-3xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-white max-w-2xl"
+        className="text-white"
       >
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-6">
-          Creating
-          <br />
-          <span className="font-bold">Moments That</span>
-          <br />
-          Last A Lifetime
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-montserrat text-[#67baf9] mb-6 leading-tight">
+          Where Moments Become <br /> Memories That Last Forever
         </h1>
-        
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-8 py-3 bg-blue-600 text-white font-medium rounded-none mt-8"
-        >
-          <Link to="/contact">Plan Your Event</Link>
-        </motion.button>
+
+        <p className="text-base font-sans md:text-2xl text-[1rem] leading-relaxed opacity-90 mb-8">
+        We are Eventino — curators of experiences that transcend time and Expectation.
+        </p>
+
       </motion.div>
     </div>
+
+    {/* Decorative Blob */}
     <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-[#2D336B] rounded-full filter blur-[200px] opacity-100 translate-x-1/4 translate-y-1/4 z-10"></div>
-    </section>
+  </section>
 );

@@ -1,42 +1,48 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import heroBg from '../../assets/services/Mask group.png';  // <-- adjust path if needed
+import { motion } from "framer-motion";
+import HeroImage from "../../assets/imgs/Services/ServicesBG.png";
 
 export const HeroSection = () => (
-  <section className="relative pb-20 mb-20 overflow-hidden h-screen flex items-center">
+  <section className="relative h-screen  text-center px-6 overflow-hidden">
+    {/* Background Image */}
     <div className="absolute inset-0 z-0">
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        style={{ backgroundImage: `url(${HeroImage})` }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-transparent opacity-80"></div>
+      {/* Optional Layer */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#061c4e] via-[#0a0a10b9] to-[#2533DE] opacity-40"></div>
     </div>
 
-    <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-white rounded-full filter blur-[300px] opacity-50 translate-x-1/4 translate-y-1/4 z-10"></div>
-    
-    <div className="container mx-auto px-6 relative z-20">
+    {/* Content */}
+    <div className="relative container h-[70vh]  flex justify-center items-center z-20 max-w-3xl mx-auto mt-20">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-white max-w-2xl"
+        className="text-white"
       >
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-6">
-          Premium
-          <br />
-          <span className="font-bold">Event Services</span>
-          <br />
-          That Inspire
+        {/* Gradient Text */}
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-montserrat text-start font-bold mb-6 leading-tight bg-gradient-to-r from-[#D1EBFB] via-[#8CA6FF] to-[#ffffff] bg-clip-text text-transparent">
+          Expertly Crafted Events. <br /> Unforgettable Experiences
         </h1>
-        
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-8 py-3 bg-blue-600 text-white font-medium rounded-none mt-8"
-        >
-          <Link to="/contact">Get Started</Link>
-        </motion.button>
+
+        <p className="text-base font-sans md:text-2xl text-[1rem] text-white leading-relaxed opacity-90 mb-8">
+          Our comprehensive services are designed to transform your vision into a lasting memory — with precision, innovation, and distinction.
+        </p>
       </motion.div>
     </div>
+
+    {/* Last Paragraph at Bottom */}
+    <div className="container">
+      <motion.p
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className="relative z-20 text-white text-sm md:text-lg leading-relaxed opacity-90 px-4 pb-6  mx-auto"
+      >
+        Whether orchestrating a global conference, curating a cultural celebration, or designing an intimate wedding, Eventino delivers end-to-end event solutions — meticulously crafted to inspire and endure.
+      </motion.p>
+    </div>
+
   </section>
 );
