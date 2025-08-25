@@ -344,7 +344,7 @@ const App = () => {
     <Router>
       <ParallaxProvider>
         <ScrollToTop />
-        <div className="font-sans antialiased relative min-h-screen bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950 text-white overflow-hidden">
+        <div className="font-sans antialiased relative min-h-screen bg-[#0C1433] text-white overflow-hidden">
           <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] opacity-0 bg-fixed bg-cover"></div>
           <Suspense >
             <Navbar />

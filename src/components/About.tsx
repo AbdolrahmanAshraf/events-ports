@@ -840,13 +840,13 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-light leading-tight mb-6 space-y-2">
-              <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold pb-6">About Us</div>
-              <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold">Where Vision Meets</div>
-              <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold">Lasting Impact</div>
+            <h2 className="font-light leading-tight mb-6 ">
+              <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold pb-6 font-dancing text-[45px]">About Us</div>
+              <div className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] font-bold font-playfair text-[50px]">Where Vision Meets</div>
+              <div className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] font-bold font-playfair text-[50px]">Lasting Impact</div>
             </h2>
 
-            <p className="text-white mb-8 leading-relaxed">
+            <p className="text-white mb-8 leading-relaxed font-nunito text-[15px]">
               For Our Life Years, Everyone Has More Examined By Leaders
               And Observers Over the Range. This Most Important
               Disclaimer: To Our Approach to Service Management
@@ -856,7 +856,7 @@ const About = () => {
             <div className="flex gap-4">
               <motion.button
                 onClick={handleNavigate}
-                className="px-11 py-6 bg-[#3E9BD8] text-white font-medium rounded-full border border-white shadow-md hover:bg-white hover:text-[#3E9BD8] transition-colors duration-300"
+                className="px-11 py-5 bg-transparent font-outfit text-white font-medium rounded-full border border-white shadow-md duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

@@ -1714,10 +1714,11 @@
 
 import HeroSection from './HeroSection';
 import GallerySection from './GallerySection';
-import Testimonials from '../../components/Testimonials';
+import Testimonials from './Testimonials';
 import GetInTouch from '../../components/GetInTouch';
 import Footer from '../../components/Footer';
 import Bullet from './Bullet';
+import CurvySections from './ThreeLines';
 
 const GalleryPage = () => {
   return (
@@ -1726,6 +1727,7 @@ const GalleryPage = () => {
       <Bullet />
       <GallerySection />
       <Testimonials/>
+      <CurvySections/>
       <GetInTouch/>
       <Footer/>
     </div>

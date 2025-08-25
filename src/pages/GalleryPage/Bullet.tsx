@@ -134,7 +134,6 @@ const Bullet: React.FC = () => {
       className="min-h-screen flex flex-col items-center justify-center 
                  gap-6 sm:gap-10 lg:gap-16 
                  px-4 sm:px-6 lg:px-8"
-      style={{ backgroundColor: '#1C295E' }}
     >
       {/* Top bullet */}
       {loading ? (

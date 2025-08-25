@@ -166,46 +166,47 @@ const Hero: React.FC<HeroProps> = ({ displayText }) => {
         >
           {/* Left Side - Text */}
           <div className="flex-1">
-            <motion.h5
-              className="text-xl mb-2 font-light"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              Welcome to
-            </motion.h5>
+<motion.h5
+  className="text-[68px] mb-2 font-light font-playfair bg-clip-text text-transparent 
+             bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)]"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3, duration: 0.6 }}
+>
+  Creating Moments That Last a Lifetime
+</motion.h5>
+
 
             <motion.h1
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-900"
+              className="text-[16px] font-nunito mb-4 text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              EVENTINO
+              At Eventino, we design experiences that transcend the moment and <br/> stay etched in memory. By blending innovation, cultural richness, and <br/> precision, we shape events that not only impress — but endure.
             </motion.h1>
 
-            <motion.div
-              className="h-12 mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.5 }}
-              aria-live="polite"
-            >
-              <h2 className="text-2xl md:text-3xl inline-block mr-2">
-                {displayText}
-              </h2>
-              <span className="animate-pulse text-2xl md:text-3xl">|</span>
-            </motion.div>
 
             <motion.button
-              className="px-8 py-3 mt-6 rounded-full bg-gradient-to-r from-blue-600 to-blue-900 text-white font-bold hover:shadow-lg transition-all"
+              className="px-10 py-4 mt-6 me-8 rounded-full bg-transparent border border-white text-white hover:shadow-lg transition-all font-outfit text-[15px]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.8 }}
             >
-              <Link to="/contact">Plan Your Event</Link>
+              <Link to="/gallery">Explore Our Work</Link>
+            </motion.button>
+
+              <motion.button
+              className="px-10 py-4 mt-6 rounded-full bg-transparent border border-white text-white hover:shadow-lg transition-all font-outfit text-[15px]"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+            >
+              <Link to="/contact">Start Your Experience</Link>
             </motion.button>
 
             <motion.div

@@ -398,11 +398,13 @@
 
 
 import { HeroSection } from './HeroSection';
-import { StorySection , stats } from './StorySection';
+import { StorySection } from './StorySection';
 import  ValuesSection from './ValuesSection';
 import Footer from '../../components/Footer';
 import GetInTouch from '../../components/GetInTouch';
-import { TestimonialsSection } from './TestimonialsSection';
+import OurValue from './OurValue';
+import { OurMission } from './OurMission';
+
 
 const AboutPage = () => {
   return (
@@ -410,8 +412,8 @@ const AboutPage = () => {
       <HeroSection />
       <StorySection />
         <ValuesSection />
-        <TestimonialsSection/>
-      
+        <OurMission/>
+        <OurValue/>
       <GetInTouch/>
       <Footer/>
     </div>

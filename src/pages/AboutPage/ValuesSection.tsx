@@ -400,13 +400,6 @@
 
 
 
-
-
-
-
-
-
-
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
@@ -439,22 +432,20 @@ interface GalleryImage {
   createdAt: string;
 }
 
-interface Event {
+interface VisionData {
   id: number;
   documentId: string;
-  titles: string;
-  description: string | null;
-  date: string | null;
-  location: string | null;
+  title: string;
+  subtitle: string;
+  description: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  slug: string;
   gallery: GalleryImage[];
 }
 
 interface ApiResponse {
-  data: Event[];
+  data: VisionData[];
   meta: {
     pagination: {
       page: number;
@@ -466,7 +457,15 @@ interface ApiResponse {
 }
 
 // Reusable component for displaying a single gallery image
-const GalleryImageCard = ({ image, className, animationProps }: { image: GalleryImage; className: string; animationProps: object }) => {
+const GalleryImageCard = ({
+  image,
+  className,
+  animationProps,
+}: {
+  image: GalleryImage;
+  className: string;
+  animationProps: object;
+}) => {
   const getImageUrl = () => {
     if (image.width > 1200 && image.formats?.large) {
       return `${API_BASE_URL}${image.formats.large.url}`;
@@ -484,83 +483,36 @@ const GalleryImageCard = ({ image, className, animationProps }: { image: Gallery
 
   return (
     <motion.div
-      className={className}
+      className={`${className} max-w-full mx-auto`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{
+        scale: 1.03,
+        transition: { duration: 0.35, ease: "easeInOut" }, // smooth hover in
+      }}
+      whileTap={{
+        scale: 0.98,
+        transition: { duration: 0.2, ease: "easeOut" }, // smooth press
+      }}
       {...animationProps}
     >
       <img
         src={getImageUrl()}
         alt={altText}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-fill rounded-3xl"
         loading="lazy"
       />
     </motion.div>
   );
 };
 
-// Component to handle the main grid layout
-const GalleryLayout = ({ gallery }: { gallery: GalleryImage[] }) => {
-  // A configuration array to define the layout without hardcoding indices
-  const layoutConfig = [
-    { index: 3, className: "h-[300px]", delay: 0.2 },
-    { index: 4, className: "h-[300px]", delay: 0.2 },
-    { index: 0, className: "h-48 sm:h-64 md:h-72 lg:h-80", delay: 0 },
-    { index: 1, className: "flex-1", delay: 0.3 },
-    { index: 2, className: "flex-1", delay: 0.3 },
-    { index: 5, className: "h-[300px]", delay: 0.2 },
-    { index: 6, className: "h-[300px]", delay: 0.2 },
-  ];
-
-  // Helper function to render a single image card based on config
-  const renderImage = (config: { index: any; className: any; delay: any; }) => {
-    const image = gallery[config.index];
-    if (!image) return null;
-    return (
-      <GalleryImageCard
-        key={image.id}
-        image={image}
-        className={config.className}
-        animationProps={{ transition: { delay: config.delay } }}
-      />
-    );
-  };
-
-  // Render the two vertical side columns and the main grid
-  return (
-    <div className="flex gap-2 md:gap-4">
-      {/* Left side - two taller vertical images */}
-      <div className="hidden md:flex flex-col w-[150px] lg:w-[200px] gap-2 md:gap-4">
-        {renderImage(layoutConfig[0])}
-        {renderImage(layoutConfig[1])}
-      </div>
-
-      {/* Main grid area */}
-      <div className="flex-1 flex flex-col gap-2 md:gap-4">
-        {renderImage(layoutConfig[2])}
-        <div className="flex gap-2 md:gap-4 h-32 sm:h-40 md:h-48">
-          {renderImage(layoutConfig[3])}
-          {renderImage(layoutConfig[4])}
-        </div>
-      </div>
-
-      {/* Right side - two taller vertical images */}
-      <div className="hidden md:flex flex-col w-[150px] lg:w-[200px] gap-2 md:gap-4">
-        {renderImage(layoutConfig[5])}
-        {renderImage(layoutConfig[6])}
-      </div>
-    </div>
-  );
-};
-
 const ValuesSection = () => {
-  const [eventData, setEventData] = useState<Event | null>(null);
+  const [visionData, setVisionData] = useState<VisionData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchGalleryData = async () => {
+  const fetchVisionData = async () => {
     setLoading(true);
     setError(null);
     try {
@@ -569,21 +521,21 @@ const ValuesSection = () => {
       );
 
       if (response.data.data.length > 0) {
-        setEventData(response.data.data[0]);
+        setVisionData(response.data.data[0]);
       } else {
-        setError('No event found with the specified slug.');
+        setError('No vision data found.');
       }
     } catch (err) {
-      console.error('Error fetching gallery data:', err);
-      setError('Failed to load gallery data. Please try again later.');
+      console.error('Error fetching vision data:', err);
+      setError('Failed to load vision data. Please try again later.');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchGalleryData();
-  }, []); // Run only on mount
+    fetchVisionData();
+  }, []);
 
   if (loading) {
     return (
@@ -594,8 +546,8 @@ const ValuesSection = () => {
   }
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-7xl mx-auto">
+    <section className="relative flex items-center justify-center px-4 py-12 overflow-hidden">
+      <div className="container mx-auto">
         <AnimatePresence mode="wait">
           {error ? (
             <motion.div
@@ -607,7 +559,7 @@ const ValuesSection = () => {
             >
               <p className="text-red-500 font-semibold">{error}</p>
               <button
-                onClick={fetchGalleryData}
+                onClick={fetchVisionData}
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
               >
                 Retry
@@ -620,33 +572,104 @@ const ValuesSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-                  {eventData?.titles}
-                </h2>
-                {eventData?.description && (
-                  <p className="mt-4 text-xl text-gray-600">
-                    {eventData.description}
-                  </p>
-                )}
+              {/* Custom Grid Layout */}
+              <div className="grid grid-cols-1 md:grid-cols-[0.6fr_1fr_0.6fr] gap-2 items-start">
+                {/* Left Column */}
+                <div className="flex flex-col gap-2 mr-[-35%]">
+                  {visionData?.gallery[0] && (
+                    <GalleryImageCard
+                      image={visionData.gallery[0]}
+                      className="rounded-2xl w-[270px] h-[370px]"
+                      animationProps={{ transition: { delay: 0.5 } }}
+                    />
+                  )}
+                  {visionData?.gallery[4] && (
+                    <GalleryImageCard
+                      image={visionData.gallery[4]}
+                      className="rounded-2xl w-[270px] h-[370px]"
+                      animationProps={{ transition: { delay: 0.3 } }}
+                    />
+                  )}
+                </div>
+
+                {/* Middle Column */}
+                <div className="flex flex-col gap-3">
+                  {/* Heading */}
+                  <div className="ourVisionTitle text-center mb-3">
+                    <motion.h2
+                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-dancing text-white mb-1"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      Our Vision
+                    </motion.h2>
+                    <motion.h3
+                      className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold bg-gradient-to-r from-[#D1EBFB] to-[#6792F9] bg-clip-text text-transparent leading-snug"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      {visionData?.title ||
+                        'Shaping The Future Of Experiential Innovation'}
+                    </motion.h3>
+                  </div>
+
+                  {visionData?.gallery[1] && (
+                    <GalleryImageCard
+                      image={visionData.gallery[1]}
+                      className="rounded-2xl w-[95%] h-[300px]"
+                      animationProps={{ transition: { delay: 0.4 } }}
+                    />
+                  )}
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                    {visionData?.gallery[2] && (
+                      <GalleryImageCard
+                        image={visionData.gallery[2]}
+                        className="rounded-2xl w-[260px] h-[305px] "
+                        animationProps={{ transition: { delay: 0.5 } }}
+                      />
+                    )}
+                    {visionData?.gallery[3] && (
+                      <GalleryImageCard
+                        image={visionData.gallery[3]}
+                        className="rounded-2xl w-[260px] h-[305px]"
+                        animationProps={{ transition: { delay: 0.6 } }}
+                      />
+                    )}
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="flex flex-col gap-2 ml-[-35%]">
+                  {visionData?.gallery[5] && (
+                    <GalleryImageCard
+                      image={visionData.gallery[5]}
+                      className="rounded-2xl w-[270px] h-[370px]"
+                      animationProps={{ transition: { delay: 0.2 } }}
+                    />
+                  )}
+                  {visionData?.gallery[6] && (
+                    <GalleryImageCard
+                      image={visionData.gallery[6]}
+                      className="rounded-2xl w-[270px] h-[370px]"
+                      animationProps={{ transition: { delay: 0.3 } }}
+                    />
+                  )}
+                </div>
               </div>
 
-              {eventData?.gallery.length && eventData.gallery.length < 7 ? (
-                <div className="text-center py-10">
-                  <p className="text-gray-500">Not enough images in gallery (need at least 7).</p>
-                </div>
-              ) : (
-                <>
-                  <div className="hidden md:flex justify-between items-end mb-4">
-                    <div className="w-[150px] lg:w-[200px]"></div>
-                    <h2 className="text-3xl font-bold text-center flex-1 px-4">
-                      Our Vision in Pictures
-                    </h2>
-                    <div className="w-[150px] lg:w-[200px]"></div>
-                  </div>
-                  {eventData?.gallery && <GalleryLayout gallery={eventData.gallery} />}
-                </>
-              )}
+              {/* Bottom Text */}
+              <motion.p
+                className="mt-8 text-center text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+              >
+                {visionData?.description ||
+                  'We aspire to redefine how the world celebrates by creating experiences that echo long after the final moment.'}
+              </motion.p>
             </motion.div>
           )}
         </AnimatePresence>

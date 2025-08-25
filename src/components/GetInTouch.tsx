@@ -9,45 +9,57 @@ const ContactButton = () => {
     window.scrollTo(0, 0);
   };
 
+  // This is the SVG for the long arrow, defined as a constant
+  const longArrowSVG = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 20"
+      className="w-full h-full"
+    >
+      <path
+        d="M0 10 L85 10 M85 10 L75 5 M85 10 L75 15"
+        stroke="#13172C"
+        strokeWidth="5"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
   return (
     <div className="flex justify-center items-center min-h-[50vh] w-full relative overflow-hidden">
-
       <motion.button
         onClick={handleNavigate}
-        className="w-[509px] h-[150px] px-9 bg-gradient-to-r from-[#455EC8] to-[#1D25AA] text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group z-10"
+        className="w-[509px] h-[150px] px-9 bg-[linear-gradient(to_right,#A5A5A8_21%,#FFFFFF_46%,#6C6C6D_73%)] text-[#13172C] font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group z-10"
         whileHover="hover"
         initial="initial"
         whileTap={{ scale: 0.98 }}
       >
         <div className="relative w-full h-full flex justify-center items-center">
-          {/* Main Text - moves left and shrinks */}
+          {/* Text element */}
           <motion.span
-            className="absolute text-[64px] z-10 origin-top-left"
+            className="absolute text-[64px] z-10"
             variants={{
               initial: { x: 0, y: 0, scale: 1, opacity: 1 },
-              hover: { x: -180, y: -75, scale: 0.5, opacity: 1 },
+              hover: { x: -150, y: -30, scale: 0.5, opacity: 1 },
             }}
             transition={{ duration: 0.4 }}
           >
             Get In Touch
           </motion.span>
 
-          {/* Hover Text - Two Lines */}
-          <motion.div
-            className="absolute z-10 text-[20px] flex flex-col items-start"
+          {/* Long arrow element */}
+          <motion.span
+            className="absolute z-10 w-[100px] h-[20px]"
             variants={{
-              initial: { x: 100, y: 100, opacity: 0 },
-              hover: { x: 10, y: 10, opacity: 1 },
+              initial: { x: 100, y: 30, scale: 0.5, opacity: 0 },
+              hover: { x: 0, y: 0, scale: 1, opacity: 1 },
             }}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            transition={{ duration: 0.4 }}
           >
-            <span>Get In Touch</span>
-            <span>Let’s Do What’s Never Been</span>
-            <span className="flex items-center">
-              Done Before
-              <span className="text-[80px]">→</span>
-            </span>
-          </motion.div>
+            {longArrowSVG}
+          </motion.span>
         </div>
 
         {/* Light hover overlay */}

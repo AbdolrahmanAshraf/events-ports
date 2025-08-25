@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+  // import { useState } from 'react';
 // import { FaChevronDown } from 'react-icons/fa';
 // import { motion, AnimatePresence } from 'framer-motion';
 // import img1 from '../../assets/11.png';
@@ -626,7 +626,7 @@ function GallerySection() {
   }
 
   return (
-    <section className="py-20 px-4 bg-[#1D2A5F] text-[#D7EEFF] relative z-10">
+    <section className="py-20 px-4 text-[#D7EEFF] relative z-10">
       <div className="max-w-[100rem] mx-auto relative z-20">
         {/* Header */}
         <div className="text-center">

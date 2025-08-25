@@ -878,23 +878,24 @@ const Gallery = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light leading-tight mb-4 md:mb-6 space-y-1 md:space-y-2">
-            <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold pb-2 md:pb-3">Gallery</div>
-            <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold">Memories, Captured</div>
-            <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold">And Celebrated</div>
+            <div className="text-[#D7EEFF] font-bold pb-2 md:pb-3 font-dancing">Gallery</div>
+            <div className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] font-bold font-playfair">Memories, Captured</div>
+            <div className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] font-bold font-playfair">And Celebrated</div>
           </h2>
         </motion.div>
 
         {/* Glass Panel */}
-        <motion.div 
-          className="relative bg-blue-900/20 p-6 sm:p-8 md:p-11 rounded-2xl md:rounded-[2rem] shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] backdrop-blur-xl border border-white/20"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
+<motion.div 
+  className="relative bg-[#335AB4]/30 p-6 sm:p-8 md:p-11 rounded-2xl md:rounded-[2rem] shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] backdrop-blur-3xl"
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ duration: 0.8 }}
+>
+
           {/* Badge - adjusted for mobile */}
           <div className="absolute -top-3 sm:-top-4 md:-top-5 left-1/2 -translate-x-1/2">
-            <span className="px-8 sm:px-12 md:px-20 py-2 sm:py-4 md:py-6 rounded-full shadow-md bg-[#3951B4]">
-              <span className="bg-[#FFFFFF] text-transparent bg-clip-text font-bold text-xs sm:text-sm md:text-m">
+            <span className="px-[70px] py-4 rounded-full shadow-md bg-[linear-gradient(to_right,#7C7C7D_21%,#FFFFFF_46%,#A5A5A8_73%)]">
+              <span className="bg-[#13172C] text-transparent bg-clip-text font-bold text-xs sm:text-sm md:text-m">
                 Recent Events
               </span>
             </span>
@@ -929,12 +930,12 @@ const Gallery = () => {
 
         {/* CTA - stacked on mobile */}
         <div className="mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-white text-center sm:text-left">
-          <p className="text-sm sm:text-base md:text-lg max-w-xl mb-3 sm:mb-0">
-            Explore our latest curated moments — crafted with creativity, precision, and unforgettable energy.
+          <p className="text-[13px] font-nunito max-w-xl mb-3 sm:mb-0">
+            Every image in our gallery tells a story of precision, beauty, and heartfelt connection.<br/> Discover how Eventino transforms ideas into vivid, lasting memories through <br/> masterful event design and flawless execution.
           </p>
           <motion.button
             onClick={handleNavigate}
-            className="px-6 sm:px-8 md:px-11 py-2 sm:py-3 md:py-4 bg-[#3E9BD8] text-white font-medium rounded-full border border-white shadow-md hover:bg-white hover:text-[#3E9BD8] transition-colors duration-300 text-sm sm:text-base"
+            className="px-6 sm:px-8 md:px-11 py-2 sm:py-3 md:py-4 bg-transparent font-outfit text-white rounded-full border border-white shadow-md duration-300 text-[13px] sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

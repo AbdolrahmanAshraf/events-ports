@@ -485,29 +485,29 @@ const Services = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-light leading-tight mb-6 space-y-2">
-              <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold pb-6">
-                Our Services
+              <div className="text-[#D7EEFF] text-[44px] pb-6 font-dancing">
+                Services
               </div>
-              <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold">
-                Expert Solutions
+              <div className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] text-[50px] font-bold font-playfair">
+                From Thought to
               </div>
-              <div className="bg-gradient-to-r from-[#CFE8FA] to-[#3E9BD8] text-transparent bg-clip-text font-bold">
-                Tailored For You
+              <div className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] font-bold font-playfair">
+                Memory — Seamlessly Delivered
               </div>
             </h2>
 
-            <p className="text-white mb-8 leading-relaxed">
-              We provide comprehensive event management solutions designed to meet your unique needs. From corporate gatherings to private celebrations, our team delivers exceptional experiences with meticulous attention to detail.
+            <p className="text-white mb-8 leading-relaxed font-nunito text-[15px]">
+             Whether orchestrating a corporate summit, an elegant wedding, or <br/> a cultural celebration, our team delivers comprehensive event <br/> solutions — rooted in innovation and executed to perfection. Our <br/> services ensure every moment is crafted to be cherished and <br/> remembered.
             </p>
 
             <div className="flex gap-4">
               <motion.button
                 onClick={handleNavigate}
-                className="px-11 py-6 bg-[#3E9BD8] text-white font-medium rounded-full border border-white shadow-md hover:bg-white hover:text-[#3E9BD8] transition-colors duration-300"
+                className="px-11 py-6 bg-transparent font-outfit text-white font-medium rounded-full border border-white duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                View Services
+                Explore Our Expertise
               </motion.button>
             </div>
           </motion.div>
