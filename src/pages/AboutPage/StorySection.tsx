@@ -128,7 +128,6 @@ export const StorySection = () => {
       transition={{ duration: 0.8 }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="absolute top-0 right-0 w-[40vw] h-[10vh] bg-white rounded-full filter blur-[100px] opacity-50 translate-x-1/4 translate-y-1/4 z-10"></div>
 
         {/* SVG Clip Path */}
 <svg width="0" height="0">

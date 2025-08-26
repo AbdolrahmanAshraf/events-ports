@@ -205,6 +205,14 @@ const OurValue = () => {
   return (
     <section className="relative flex items-center justify-center overflow-hidden py-20 my-20">
       <div className="relative mx-auto w-full max-w-6xl flex flex-col items-center gap-8">
+              <div className="text-center max-w-2xl mb-6">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+          Our Core Values
+        </h2>
+        <p className="text-base sm:text-lg text-gray-300">
+          We stand by the principles that define who we are and how we create meaningful experiences.
+        </p>
+      </div>
         {images[0] && (
           <FramedImage
             src={images[0]}

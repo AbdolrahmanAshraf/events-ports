@@ -1,44 +1,86 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import HeroImage from '../../assets/IMG-20250412-WA0028 1.png';
+import { useState, useEffect } from 'react';
 
+interface StrapiImageFormat {
+  url: string;
+  width: number;
+  height: number;
+}
 
-export const HeroSection = () => (
-  <section className="relative pb-20  overflow-hidden h-screen flex items-center">
-    <div className="absolute inset-0 z-0">
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${HeroImage})` }}
-      ></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black to-transparent opacity-80"></div>
-    </div>
+interface StrapiImage {
+  id: number;
+  url: string;
+  alternativeText?: string;
+  width?: number;
+  height?: number;
+  formats?: {
+    large?: StrapiImageFormat;
+    medium?: StrapiImageFormat;
+    small?: StrapiImageFormat;
+    thumbnail?: StrapiImageFormat;
+  };
+}
 
-    {/* <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-white rounded-full filter blur-[300px] opacity-50 translate-x-1/4 translate-y-1/4 z-10"></div> */}
-    
-    <div className="container mx-auto px-6 relative z-20">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-white max-w-2xl"
-      >
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-light leading-tight mb-6">
-          Creating
-          <br />
-          <span className="font-bold">Moments That</span>
-          <br />
-          Last A Lifetime
-        </h1>
+export const HeroSection = () => {
+  const [heroImage, setHeroImage] = useState<string>('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchHeroImage = async () => {
+      try {
+        const response = await fetch('http://localhost:1337/api/events?filters[slug][$eq]=About-hero&populate=coverImage');
+        if (!response.ok) {
+          throw new Error('Failed to fetch hero image');
+        }
         
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-8 py-3 bg-blue-600 text-white font-medium rounded-none mt-8"
+        const data = await response.json();
+        const coverImageData = data?.data?.[0]?.coverImage as StrapiImage;
+        
+        if (coverImageData) {
+          const imageUrl = coverImageData.formats?.large?.url || coverImageData.url;
+          setHeroImage(`http://localhost:1337${imageUrl}`);
+        }
+      } catch (error: any) {
+        console.error('Error fetching hero image from Strapi:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHeroImage();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="relative pb-20 overflow-hidden h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="relative pb-20 overflow-hidden h-screen flex items-center justify-center">
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 w-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        ></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-20 flex items-center justify-center text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] w-full"
         >
-          <Link to="/contact">Plan Your Event</Link>
-        </motion.button>
-      </motion.div>
-    </div>
-    <div className="absolute bottom-0 right-0 w-[50vw] h-[50vh] bg-[#2D336B] rounded-full filter blur-[200px] opacity-100 translate-x-1/4 translate-y-1/4 z-10"></div>
+          <h1 className="text-[60px] font-playfair leading-tight">
+            Where Moments Become <br/> Memories That Lasts Forever
+          </h1>
+        </motion.div>
+      </div>
     </section>
-);
+  );
+};

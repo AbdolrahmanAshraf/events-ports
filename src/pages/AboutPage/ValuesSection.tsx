@@ -605,7 +605,7 @@ const ValuesSection = () => {
                       Our Vision
                     </motion.h2>
                     <motion.h3
-                      className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold bg-gradient-to-r from-[#D1EBFB] to-[#6792F9] bg-clip-text text-transparent leading-snug"
+                      className="text-lg sm:text-2xl md:text-3xl lg:text-5xl font-bold bg-clip-text text-transparent bg-[linear-gradient(to_right,#A1A1A1_22%,#FFFFFF_49%,#A1A1A1_77%)] leading-snug"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
